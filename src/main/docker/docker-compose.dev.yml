@@ -1,0 +1,17 @@
+version: '2.1'
+
+services:
+  sbt:
+    ports:
+      - "9000:9000"
+    volumes:
+      - $PWD:/app
+
+  elasticsearch:
+    ports:
+      - "9200:9200"
+
+  rabbitmq:
+    ports:
+      - "5672:5672"
+      - "15672:15672"

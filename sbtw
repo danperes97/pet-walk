@@ -1,0 +1,22 @@
+#!/bin/bash
+
+COMPOSE_FILES="-f src/main/docker/docker-compose.shared.yml"
+COMMAND="$@"
+
+if [[ $COMMAND =~ (test|testOnly)  ]]; then
+    COMPOSE_FILES="$COMPOSE_FILES"
+else 
+    COMPOSE_FILES="$COMPOSE_FILES -f src/main/docker/docker-compose.dev.yml"
+fi
+
+if [[ $COMMAND == "debug"  ]]; then
+    docker-compose $COMPOSE_FILES run sbt run -jvm-debug 5005
+else
+    docker-compose $COMPOSE_FILES run --service-ports sbt "$COMMAND"
+fi
+
+read -p "Would you like to remove the containers? (Y/n)" -n 1 -r
+if [[ $REPLY =~ ^[Yy]$  ]]
+then
+    docker-compose $COMPOSE_FILES down --remove-orphans
+fi
