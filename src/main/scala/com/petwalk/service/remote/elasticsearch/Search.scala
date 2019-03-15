@@ -20,9 +20,22 @@ trait Search extends Elasticsearch {
       search(walkerIndex / "walker").query {
         must(GeoQueryBuilder.distanceQuery(coordinates, DefaultDistance))
       } sortBy { GeoQueryBuilder.sortQuery(coordinates) }
-    }.map(nearWalkers => processResult(nearWalkers))
+    }.map(nearWalkers => processNearWalkers(nearWalkers))
 
-  private def processResult(searchResponse: Response[_]): Seq[NearWalker] =
+  def searchToken(token: String): Future[Seq[Walker]] =
+    walkerElasticsearch.client.execute {
+      search(walkerIndex / "walker").query {
+        must(WalkerQueryBuilder.tokenQuery(token))
+      }
+    }.map(walkers => processWalkers(walkers))
+
+  private def processWalkers(searchResponse: Response[_]): Seq[Walker] =
+    searchResponse match {
+      case failure: RequestFailure => walkerElasticsearch.error(s"fetch result ${failure.error.reason}")
+      case results: RequestSuccess[SearchResponse] => buildWalkers(results.result)
+    }
+
+  private def processNearWalkers(searchResponse: Response[_]): Seq[NearWalker] =
     searchResponse match {
       case failure: RequestFailure => walkerElasticsearch.error(s"fetch result ${failure.error.reason}")
       case results: RequestSuccess[SearchResponse] => buildNearWalkers(results.result)

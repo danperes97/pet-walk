@@ -13,4 +13,7 @@ trait WalkerSearchService extends Config with Search {
 
   def searchNearby(coordinates: Coordinates): Future[Seq[NearWalker]] =
     searchElasticsearch.searchGeolocation(coordinates)
+
+  def searchWalker(token: String): Future[Seq[Walker]] =
+    searchElasticsearch.searchToken(token)
 }

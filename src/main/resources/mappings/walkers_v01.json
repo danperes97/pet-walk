@@ -5,7 +5,7 @@
             "token":{
                "type":"text"
             },
-            "location":{
+            "coordinates":{
                "type":"geo_point"
             }
          }

@@ -53,6 +53,18 @@ trait Elasticsearch extends Config {
     }.toSeq.flatten
   }
 
+  def buildWalkers(response: SearchResponse): Seq[Walker] = {
+    response.hits.hits.map { hit =>
+      decode[Walker](hit.sourceAsString).fold(
+        (err) => {
+          logger.warn(s"decode error: ${hit.sourceAsString}", err)
+          None
+        },
+        (walker) => Some(walker)
+      )
+    }.toSeq.flatten
+  }
+
   def error(message: String, cause: Option[Throwable] = None) =
     throw new ElasticSearchException(s"Elastic Search: $message", cause)
 }
