@@ -1,0 +1,14 @@
+{
+   "mappings":{
+      "walker":{
+         "properties":{
+            "token":{
+               "type":"text"
+            },
+            "location":{
+               "type":"geo_point"
+            }
+         }
+      }
+   }
+}

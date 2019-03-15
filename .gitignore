@@ -1,0 +1,13 @@
+project/target
+target
+.idea
+.metals
+
+#---eclipse
+/bin/
+.cache-main
+.cache-tests
+.classpath
+.project
+.settings/
+#----------

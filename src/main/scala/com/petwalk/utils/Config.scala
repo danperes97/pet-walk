@@ -13,7 +13,7 @@ trait Config {
   val publicDns = httpConfig.getString("publicDns")
 
   val elasticsearchUrl = elasticsearchConfig.getString("url")
-  val gymsIndex = elasticsearchConfig.getString("walkers-index")
+  val walkerIndex = elasticsearchConfig.getString("walkers-index")
 
   val timezone = applicationConfig.getString("timezone")
 }

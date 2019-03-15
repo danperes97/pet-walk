@@ -2,6 +2,9 @@ version: '2.1'
 
 services:
   sbt:
+    depends_on:
+      - rabbitmq
+      - elasticsearch
     ports:
       - "9000:9000"
     volumes:
