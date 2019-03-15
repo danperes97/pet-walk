@@ -1,16 +1,17 @@
-package com.petwalk.fixture
+package com.petwalk.fixture.templates
 
-import br.com.six2six.fixturefactory.function.AtomicFunction
 import br.com.six2six.fixturefactory.{ Fixture, Rule }
 import br.com.six2six.fixturefactory.loader.TemplateLoader
-import com.petwalk.fixture.FixtureHelper._
+import br.com.six2six.fixturefactory.function.AtomicFunction
 
 import com.petwalk.model._
+import com.petwalk.pubsub.event._
+import com.petwalk.fixture.FixtureHelper._
 
-class WalkerTemplate extends TemplateLoader {
+class WalkerUpdatedEventTemplate extends TemplateLoader {
 
   override def load() {
-    Fixture.of(classOf[Walker]).addTemplate("default", new Rule {
+    Fixture.of(classOf[WalkerUpdatedEvent]).addTemplate("default", new Rule {
       add("token", regex("\\w{10}"))
       add("name", regex("\\w{10}"))
       add("coordinates", one(classOf[Coordinates], "default"))

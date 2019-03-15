@@ -1,4 +1,4 @@
-package com.petwalk.fixture
+package com.petwalk.fixture.templates
 
 import br.com.six2six.fixturefactory.function.AtomicFunction
 import br.com.six2six.fixturefactory.{ Fixture, Rule }

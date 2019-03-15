@@ -7,7 +7,7 @@ import br.com.six2six.fixturefactory.Rule
 
 trait FixtureSupport {
 
-  FixtureFactoryLoader.loadTemplates("com.petwalk.fixture")
+  FixtureFactoryLoader.loadTemplates("com.petwalk.fixture.templates")
 
   def buildFixture[T](name: String)(implicit tag: ClassTag[T]): T =
     Fixture.from(tag.runtimeClass).gimme(name).asInstanceOf[T]
