@@ -26,6 +26,7 @@ lazy val root = (project in file(".")).
       "com.spingo"        %% "op-rabbit-core"        % opRabbitVersion,
       "com.spingo"        %% "op-rabbit-circe"       % opRabbitVersion,
       "com.spingo"        %% "op-rabbit-akka-stream" % opRabbitVersion,
+      "ch.megard" %% "akka-http-cors" % "0.3.0",
 
       "com.rollbar" % "rollbar-logback" % rollbarVersion,
 
