@@ -11,7 +11,10 @@ case class WalkerUpdatedEvent(
     token: String,
     name: String,
     coordinates: Coordinates,
-    pets: List[Pet]
+    pets: List[Pet],
+    walks: Long,
+    likes: Long,
+    phrase: String,
 ) {
-  def toWalker: Walker = Walker(token, name, coordinates, pets)
+  def toWalker: Walker = Walker(token, name, coordinates, pets, walks, likes, phrase)
 }

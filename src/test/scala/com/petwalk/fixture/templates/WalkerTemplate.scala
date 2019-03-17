@@ -13,8 +13,11 @@ class WalkerTemplate extends TemplateLoader {
     Fixture.of(classOf[Walker]).addTemplate("default", new Rule {
       add("token", regex("\\w{10}"))
       add("name", regex("\\w{10}"))
+      add("phrase", regex("\\w{10}"))
       add("coordinates", one(classOf[Coordinates], "default"))
       add("pets", scalaList[Pet](4, "default"))
+      add("walks", 250.toLong)
+      add("likes", 250.toLong)
     })
   }
 }
