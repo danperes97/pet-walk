@@ -17,8 +17,8 @@ trait PetWalkApi extends BaseApi with WalkerSearchService {
       pathPrefix("nearby") {
         get {
           pathEndOrSingleSlash {
-            parameters('coordinates.as[Coordinates]) { (coordinates) =>
-              complete(walkerSearchService.searchNearby(coordinates))
+            parameters('coordinates.as[Coordinates], 'excludeTokens.?) { (coordinates, tokens) =>
+              complete(walkerSearchService.searchNearby(coordinates, tokens.map(_.split(",")).fold(Seq[String]())(_.toSeq)))
             }
           }
         }

@@ -15,10 +15,15 @@ trait Search extends Elasticsearch {
   protected val searchElasticsearch = this
   private val DefaultDistance = 1.0
 
-  def searchGeolocation(coordinates: Coordinates): Future[Seq[NearWalker]] =
+  def searchGeolocation(coordinates: Coordinates, tokens: Seq[String]): Future[Seq[NearWalker]] =
     walkerElasticsearch.client.execute {
       search(walkerIndex / "walker").query {
-        must(GeoQueryBuilder.distanceQuery(coordinates, DefaultDistance))
+        must(
+          GeoQueryBuilder.distanceQuery(coordinates, DefaultDistance)
+        )
+        not(
+          tokens.map(token => termQuery("token", token))
+        )
       } sortBy { GeoQueryBuilder.sortQuery(coordinates) }
     }.map(nearWalkers => processNearWalkers(nearWalkers))
 
