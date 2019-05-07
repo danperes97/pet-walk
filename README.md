@@ -13,7 +13,8 @@ We are using:
 
 ## How to run
 
-You just need to run `sudo ./sbtw run`
+To initialize the server: You just need to run `sudo ./sbtw run`
+To run tests: You just need to run `sudo ./sbtw test`
 
 ## TODO
 
