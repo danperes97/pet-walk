@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   sbt:
-    image: gympass/scala-sbt
+    image: hseeberger/scala-sbt
     stdin_open: true
     user: user
     tty: true

@@ -1,4 +1,0 @@
-[0m[[0m[31merror[0m] [0m[0m/app/src/main/scala/com/petwalk/model/Coordinates.scala:7:12: macro annotation could not be expanded (the most common reason for that is that you need to enable the macro paradise plugin; another possibility is that you try to use macro annotation in the same compilation run that defines it)[0m
-[0m[[0m[31merror[0m] [0m[0mcase class Coordinates(lat: Double, lon: Double)[0m
-[0m[[0m[31merror[0m] [0m[0m           ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
