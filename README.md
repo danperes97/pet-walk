@@ -1,27 +1,22 @@
-Heroku deployment
-=================
+## Pet walk
 
-Heroku normally expects the project to reside in the root of the git repo.
-the source code for the up and running chapter is not in the root of the repo, so you need to use a different command to deploy to heroku:
+This is a web application for people who want to walk with their pets but doesn't have time.
 
-    git subtree push --prefix chapter-up-and-running heroku master
+## Technologies
 
-This command has to be executed from the root of the git repo, not from within the chapter directory.
-The git subtree command is not as featured as the normal push command, for instance, it does not provide a flag to force push,
-and it does not support the <local-branch>:<remote-branch> syntax which you can use with git push:
+We are using:
 
-    git push heroku my-localbranch:master
+  - Scala with Akka Http
+  - RabbitMq to receive events
+  - ElasticSearch to storage and peform search
+  - Docker
 
-Which is normally used to deploy from a branch to heroku (pushing a branch to heroku master).
-It is possible to nest commands though, so if you want to push from a branch you can do the following:
+## How to run
 
-    git push heroku `git subtree split --prefix chapter-up-and-running my-local-branch`:master
+You just need to run `sudo ./sbtw run`
 
-Where *my-local-branch* is your local branch.
-Forcing a push can be done by nesting commands as well:
+## TODO
 
-    git push heroku `git subtree split --prefix chapter-up-and-running master`:master --force
-
-The above pushes the changes in local master to heroku master.
-
-
+ - Change scala docker image
+ - Complete automatized tests
+ - Refactor the code
