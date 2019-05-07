@@ -4,7 +4,6 @@ services:
   sbt:
     image: hseeberger/scala-sbt
     stdin_open: true
-    user: user
     tty: true
     entrypoint: sbt
     environment:
@@ -20,7 +19,7 @@ services:
       - RABBIT_MQ_PASSWORD=guest
       - RABBIT_MQ_PORT=5672
     volumes:
-      - $PWD:/app
+      - $PWD:/root
       - m2repo:/home/user/.m2
       - ivy2:/home/user/.ivy2
     ports:

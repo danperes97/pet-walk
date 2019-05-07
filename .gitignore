@@ -2,6 +2,8 @@ project/target
 target
 .idea
 .metals
+.ivy2
+.sbt
 
 #---eclipse
 /bin/
